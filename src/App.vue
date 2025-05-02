@@ -21,6 +21,10 @@ const toggleTask = (task) => {
   console.log(tasks.value)
 }
 
+const removeTask = (task) => {
+  tasks.value = tasks.value.filter(t => t.id !== task.id)
+}
+
 </script>
 
 <template>
@@ -29,8 +33,9 @@ const toggleTask = (task) => {
 
   <ul>
     <li v-for="task in tasks" :key="task.id">
-      <input type="checkbox" v-model="task.completed" @change="toggleTask(task)" :checked="task.completed"> 
+      <input type="checkbox" v-model="task.completed" @change="toggleTask(task)" :checked="task.completed">
       {{ task.text }}
+      <button @click="removeTask(task)">Remove</button>
     </li>
   </ul>
 </template>
